@@ -2,19 +2,22 @@ name: Lint
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  build:
-
+  lint:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setip-node@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: 20.x
-      - run: bun install
-      - run: bun lint
+          bun-version: 1.1.x
+
+      - name: Install deps
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
