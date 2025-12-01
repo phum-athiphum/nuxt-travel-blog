@@ -4,14 +4,18 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  components: true,
   vite: {
     plugins: [
       tailwindcss(),
     ],
   },
+  colorMode: {
+    dataValue: "theme",
+  },
   // บอกว่าทุกหน้าของ nuxt ต้องโหลดอันนี้
   css: ["./app/assets/css/main.css"],
-  modules: ["@nuxt/eslint", "@nuxt/icon"],
+  modules: ["@nuxt/eslint", "@nuxt/icon", "@nuxtjs/color-mode"],
   eslint: {
     config: {
       standalone: false,
